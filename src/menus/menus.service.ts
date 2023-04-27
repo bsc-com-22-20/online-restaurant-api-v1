@@ -24,8 +24,6 @@ export class MenusService {
      * isAvailable
      * }
      */
-    // const newMenu = new menu(new Date().toString(), id, food-name, price, isAvailable)
-    //this.menu.push(newMenu);
 
     return this.menusRepository.save(newMenu);
     return 'Harry Kane';
