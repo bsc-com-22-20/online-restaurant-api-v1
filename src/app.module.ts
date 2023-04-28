@@ -6,10 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Menus } from './menus/models/menus.entity';
 import { OrdersModule } from './orders/orders.module';
 import { Orders } from './orders/models/orders.entity';
+import { CustomersModule } from './customers/customers.module';
+import { Customers } from './customers/models/customers.entity';
 
 @Module({
   imports: [
-    MenusModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -17,10 +18,12 @@ import { Orders } from './orders/models/orders.entity';
       username: 'root',
       password: '',
       database: 'Food_For_You',
-      entities: [Menus, Orders],
+      entities: [Menus, Orders, Customers],
       synchronize: false,
     }),
+    MenusModule,
     OrdersModule,
+    CustomersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

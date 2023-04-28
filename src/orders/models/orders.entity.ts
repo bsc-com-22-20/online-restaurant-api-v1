@@ -18,3 +18,4 @@ export class Orders {
   @ManyToOne(() => Menus, (menu) => menu.orders, { nullable: false })
   menu: Menus;
 }
+ 

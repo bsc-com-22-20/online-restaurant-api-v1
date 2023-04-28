@@ -16,17 +16,7 @@ export class MenusService {
   createMenu(menu: CreateMenuDto) {
     // food-name: String, price: number, isAvailable: boolean//
     const newMenu = this.menusRepository.create({ ...menu });
-    /**
-     * {
-     * id: generated,
-     * food-name:,
-     * price,
-     * isAvailable
-     * }
-     */
-
     return this.menusRepository.save(newMenu);
-    return 'Harry Kane';
   }
   async deleteMenu(id: number) {
     return this.menusRepository.delete({ id });
