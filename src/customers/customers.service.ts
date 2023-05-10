@@ -20,7 +20,7 @@ export class CustomersService {
     return this.customersRepository.save(newCustomer);
   }
 
-  async deleteMenu(id: number) {
+  async deleteCustomer(id: number) {
     return this.customersRepository.delete({ id });
   }
 

@@ -5,10 +5,12 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dtos/create-customers.dto';
+import { EditCustomerDto } from './dtos';
 
 @Controller('customers')
 export class CustomersController {
@@ -22,7 +24,7 @@ export class CustomersController {
 
   @Post()
   // localhost:3000/menus
-  addMenuItem(@Body() customer) {
+  addCustomerItem(@Body() customer) {
     return this.customersService.createCustomers(customer);
   }
 
@@ -32,6 +34,14 @@ export class CustomersController {
     @Param('id', ParseIntPipe) id: number,
     @Body() address: String,
   ) {
-    return await this.customersService.deleteMenu(id);
+    return await this.customersService.deleteCustomer(id);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateCustomersDto: EditCustomerDto,
+  ) {
+    return await this.customersService.updateCustomer(id, updateCustomersDto);
   }
 }
