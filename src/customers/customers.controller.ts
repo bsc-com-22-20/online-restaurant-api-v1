@@ -11,7 +11,9 @@ import {
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dtos/create-customers.dto';
 import { EditCustomerDto } from './dtos';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Customers')
 @Controller('customers')
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
@@ -20,6 +22,11 @@ export class CustomersController {
   // localhost:3000/menus
   getCustomers() {
     return this.customersService.fetchCustomers();
+  }
+
+  @Get(':id')
+  getOneCustomer(@Param('id') id: string) {
+    return this.customersService.findOne(id);
   }
 
   @Post()

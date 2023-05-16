@@ -7,7 +7,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Online Restaurant')
-    .setDescription('The cats API description')
+    .setDescription(
+      'API where you can order and buy your food from without physically visiting a restuarant',
+    )
     .setVersion('1.0')
     .addTag('Orders')
     .build();

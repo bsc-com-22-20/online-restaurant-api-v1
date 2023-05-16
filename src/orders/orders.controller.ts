@@ -12,7 +12,9 @@ import {
 import { OrdersService } from './orders.service';
 import { Orders } from './models/orders.entity';
 import { CreateOrderDto, EditOrderDto } from './dtos';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Orders')
 @Controller('orders')
 export class OrdersController {
   private logger = new Logger(OrdersController.name);

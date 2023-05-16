@@ -8,8 +8,7 @@ import { OrdersModule } from './orders/orders.module';
 import { Orders } from './orders/models/orders.entity';
 import { CustomersModule } from './customers/customers.module';
 import { Customers } from './customers/models/customers.entity';
-import { Food_suppliesModule } from './food_supplies/food_supplies.module';
-import { Food_supplies } from './food_supplies/models/food_supplies.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,13 +19,13 @@ import { Food_supplies } from './food_supplies/models/food_supplies.entity';
       username: 'root',
       password: '',
       database: 'Food_For_You',
-      entities: [Menus, Orders, Customers, Food_supplies],
+      entities: [Menus, Orders, Customers],
       synchronize: false,
     }),
     MenusModule,
     OrdersModule,
     CustomersModule,
-    Food_suppliesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

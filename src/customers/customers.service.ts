@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Customers } from './models/customers.entity';
@@ -7,6 +7,7 @@ import { EditCustomerDto } from './dtos';
 
 @Injectable()
 export class CustomersService {
+  logger = new Logger();
   constructor(
     @InjectRepository(Customers)
     private customersRepository: Repository<Customers>,
@@ -26,5 +27,14 @@ export class CustomersService {
 
   async updateCustomer(id: number, customerDetails: EditCustomerDto) {
     return this.customersRepository.update({ id }, { ...customerDetails });
+  }
+
+  async findOne(customer_name: string): Promise<Customers | undefined> {
+    this.logger.log(customer_name);
+    return this.customersRepository.findOne({
+      where: {
+        customer_name,
+      },
+    });
   }
 }

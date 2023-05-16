@@ -3,4 +3,5 @@ export class EditCustomerDto {
   mobile_number: number;
   email: string;
   address: string;
+  password: string;
 }

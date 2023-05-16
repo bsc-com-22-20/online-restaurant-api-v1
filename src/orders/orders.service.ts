@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateOrderDto, EditOrderDto } from './dtos';
 import { error } from 'console';
 import { Menus } from 'src/menus/models/menus.entity';
+import { Customers } from 'src/customers/models/customers.entity';
 
 @Injectable()
 export class OrdersService {
@@ -14,6 +15,8 @@ export class OrdersService {
     private ordersRepository: Repository<Orders>,
     @InjectRepository(Menus)
     private menusRepository: Repository<Menus>,
+    @InjectRepository(Customers)
+    private customersRepository: Repository<Menus>,
   ) {}
 
   async fetchAllOrder() {
@@ -34,20 +37,48 @@ export class OrdersService {
         },
       });
     } catch (error) {
+      throw new Error(`Error retrieving menus with id ${id}: ${error.message}`);
+    }
+  }
+  async fetchOrdersByCustomerId(id: number): Promise<Orders[]> {
+    try {
+      return this.ordersRepository.find({
+        where: {
+          customer: {
+            id: id,
+          },
+        },
+      });
+    } catch (error) {
       throw new Error(
-        `Error retrieving menus from board with id ${id}: ${error.message}`,
+        `Error retrieving customers with id ${id}: ${error.message}`,
       );
     }
   }
-
   async createOrder(id, order: CreateOrderDto) {
     this.logger.log(id);
     const menu = await this.menusRepository.findOne({ where: { id } });
+
     this.logger.log({ ...menu });
-    // food_id: numder, quantity: number, date: Date//
+    // food_id: number, quantity: number, date: Date//
     const date = new Date();
     const newMenu = this.ordersRepository.create({ ...order, menu, date });
     return this.ordersRepository.save(newMenu);
+  }
+
+  async createOrderByCustomerId(id, order: CreateOrderDto) {
+    this.logger.log(id);
+    const customer = await this.customersRepository.findOne({ where: { id } });
+
+    this.logger.log({ ...customer });
+    // _id: numder, quantity: number, date: Date//
+    const date = new Date();
+    const newCustomer = this.ordersRepository.create({
+      ...order,
+      customer,
+      date,
+    });
+    return this.ordersRepository.save(newCustomer);
   }
 
   async deleteOrder(id: number) {
