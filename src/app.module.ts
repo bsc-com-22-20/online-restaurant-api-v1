@@ -20,7 +20,7 @@ import { AuthModule } from './auth/auth.module';
       password: '',
       database: 'Food_For_You',
       entities: [Menus, Orders, Customers],
-      // synchronize: false,
+      synchronize: false,
     }),
     MenusModule,
     OrdersModule,

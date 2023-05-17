@@ -31,10 +31,10 @@ export class CustomersService {
 
   async findOne(customer_name: string): Promise<Customers | undefined> {
     this.logger.log(customer_name);
-    return this.customersRepository.findOne({
-      where: {
-        customer_name,
-      },
+    return this.customersRepository.findOneBy({
+      // where: {
+      customer_name,
+      // },
     });
   }
 }
