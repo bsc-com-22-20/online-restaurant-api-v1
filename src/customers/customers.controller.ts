@@ -1,5 +1,6 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
@@ -7,6 +8,9 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dtos/create-customers.dto';
@@ -17,22 +21,24 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('customers')
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
+
   @Get()
 
   // localhost:3000/menus
   getCustomers() {
     return this.customersService.fetchCustomers();
   }
-
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   getOneCustomer(@Param('id') id: string) {
     return this.customersService.findOne(id);
   }
 
   @Post()
+  @UsePipes(ValidationPipe)
   // localhost:3000/menus
-  addCustomerItem(@Body() customer) {
-    return this.customersService.createCustomers(customer);
+  addCustomerItem(@Body() CreateCustomerDto: CreateCustomerDto) {
+    return this.customersService.createCustomers(CreateCustomerDto);
   }
 
   @Delete(':id')
