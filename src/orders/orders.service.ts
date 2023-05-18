@@ -32,11 +32,11 @@ export class OrdersService {
     customer_id: number,
   ): Promise<Orders> {
     try {
-      const { food_id, customer_id, ...orderdto } = orderDetails;
       const menu = await this.menusRepository.findOneBy({ id: food_id });
       const customer = await this.customersRepository.findOneBy({
         id: customer_id,
       });
+
       const newOrder = this.ordersRepository.create({
         ...orderDetails,
         menu,
