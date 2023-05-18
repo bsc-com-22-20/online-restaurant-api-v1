@@ -52,11 +52,7 @@ export class OrdersService {
   async fetchOrders(id: number): Promise<Orders[]> {
     try {
       return this.ordersRepository.find({
-        where: {
-          menu: {
-            id: id,
-          },
-        },
+        where: { id },
       });
     } catch (error) {
       throw new Error(`Error retrieving menus with id ${id}: ${error.message}`);

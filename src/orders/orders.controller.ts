@@ -30,6 +30,10 @@ export class OrdersController {
   getOrders(@Body() id) {
     return this.ordersService.fetchOrders(id);
   }
+  @Get(':id')
+  getOneOrder(@Param('id') id: number) {
+    return this.ordersService.fetchOrders(id);
+  }
 
   //localhost:3000//
   @Post(':foodId/:customerId')

@@ -8,15 +8,9 @@ export class Orders {
   id: number;
 
   @Column()
-  food_id: number;
-
-  @Column()
-  customer_id: number;
-
-  @Column()
   quantity: number;
 
-  @Column()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date: Date;
 
   @Column()
