@@ -22,21 +22,21 @@ import { ApiTags } from '@nestjs/swagger';
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
-  @Get('customer')
+  @Get()
 
   // localhost:3000/menus
   getCustomers() {
     return this.customersService.fetchCustomers();
   }
-  // @UseInterceptors(ClassSerializerInterceptor)
-  // @Get(':id')
+  //  @UseInterceptors(ClassSerializerInterceptor)
+  //  @Get(':id')
   // getOneCustomer(@Param('id') id: number) {
-  //   return this.customersService.findOne(id);
-  // }
+  //   return this.customersService.fetchCustomers(id);
+  //  }
   @UseInterceptors(ClassSerializerInterceptor)
   @Get('customer_name')
   async findOneBy(@Param('customer_name') customer_name: string) {
-    return this.customersService.findOne(customer_name);
+    return this.customersService.findCustomerbyCustomer_name(customer_name);
   }
 
   @Post()

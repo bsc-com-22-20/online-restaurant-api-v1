@@ -4,9 +4,11 @@ import { AuthService } from './services/auth/auth.service';
 import { CustomersService } from 'src/customers/customers.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Customers } from 'src/customers/models/customers.entity';
+import { PassportModule } from '@nestjs/passport';
+import { LocalStrategy } from './utils/LocalStrategy';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Customers])],
+  imports: [TypeOrmModule.forFeature([Customers]), PassportModule],
   controllers: [AuthController],
   providers: [
     {
@@ -17,6 +19,7 @@ import { Customers } from 'src/customers/models/customers.entity';
       provide: 'CUSTOMERS_SERVICE',
       useClass: CustomersService,
     },
+    LocalStrategy,
   ],
 })
 export class AuthModule {}

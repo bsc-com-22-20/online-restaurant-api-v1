@@ -26,6 +26,28 @@ export class OrdersService {
       throw new Error(`Error retrieving orders: ${error.message}`);
     }
   }
+  async createOrder(
+    orderDetails: CreateOrderDto,
+    food_id: number,
+    customer_id: number,
+  ): Promise<Orders> {
+    try {
+      const { food_id, customer_id, ...orderdto } = orderDetails;
+      const menu = await this.menusRepository.findOneBy({ id: food_id });
+      const customer = await this.customersRepository.findOneBy({
+        id: customer_id,
+      });
+      const newOrder = this.ordersRepository.create({
+        ...orderDetails,
+        menu,
+        customer,
+      });
+      this.logger.log(newOrder);
+      return this.ordersRepository.save(newOrder);
+    } catch (error) {
+      throw new Error('Error creating an order: ${error.message}');
+    }
+  }
 
   async fetchOrders(id: number): Promise<Orders[]> {
     try {
@@ -55,7 +77,7 @@ export class OrdersService {
       );
     }
   }
-  async createOrder(id, order: CreateOrderDto) {
+  async createOrderByMenuId(id, order: CreateOrderDto) {
     this.logger.log(id);
     const menu = await this.menusRepository.findOne({ where: { id } });
 

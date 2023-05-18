@@ -29,12 +29,7 @@ export class CustomersService {
     return this.customersRepository.update({ id }, { ...customerDetails });
   }
 
-  async findOne(customer_name: string): Promise<Customers | undefined> {
-    this.logger.log(customer_name);
-    return this.customersRepository.findOneBy({
-      // where: {
-      customer_name,
-      // },
-    });
+  findCustomerbyCustomer_name(customer_name: string) {
+    return this.customersRepository.findOneBy({ customer_name });
   }
 }

@@ -7,5 +7,16 @@ export class AuthService {
     @Inject('CUSTOMERS_SERVICE')
     private readonly customersService: CustomersService,
   ) {}
-  validateCustomer(customer_name: string, password: string) {}
+  async validateCustomer(customer_name: string, password: string) {
+    console.log('Inside validateCustomer');
+    const customersDB = await this.customersService.findCustomerbyCustomer_name(
+      customer_name,
+    );
+    if (customersDB && customersDB.password === password) {
+      console.log('Customer Validation success!');
+      return customersDB;
+    }
+    console.log('Customer Validation Failed!');
+    return null;
+  }
 }

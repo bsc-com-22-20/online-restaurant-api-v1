@@ -35,10 +35,11 @@ export class OrdersController {
   @Post(':id')
   addOrderItem(
     @Param('id', ParseIntPipe) id: number,
+    @Param('customer_id', ParseIntPipe) customer_id: number,
     @Body() order: CreateOrderDto,
   ) {
     this.logger.log(id);
-    return this.ordersService.createOrder(id, order);
+    return this.ordersService.createOrder(order, id, customer_id);
   }
 
   @Delete(':id')
