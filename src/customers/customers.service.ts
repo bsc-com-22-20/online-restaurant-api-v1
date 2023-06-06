@@ -15,6 +15,9 @@ export class CustomersService {
   fetchCustomers() {
     return this.customersRepository.find();
   }
+  async singleCustomer(id: number) {
+    return await this.customersRepository.findOneBy({ id });
+  }
 
   createCustomers(customer: CreateCustomerDto) {
     const newCustomer = this.customersRepository.create({ ...customer });

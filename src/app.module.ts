@@ -8,6 +8,7 @@ import { OrdersModule } from './orders/orders.module';
 import { Orders } from './orders/models/orders.entity';
 import { CustomersModule } from './customers/customers.module';
 import { Customers } from './customers/models/customers.entity';
+import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
@@ -27,7 +28,7 @@ import { AuthModule } from './auth/auth.module';
     CustomersModule,
     AuthModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, AuthController],
   providers: [AppService],
 })
 export class AppModule {}
