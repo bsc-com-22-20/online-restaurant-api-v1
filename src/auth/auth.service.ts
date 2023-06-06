@@ -20,5 +20,8 @@ export class AuthService {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
-  get;
+  async getProfile() {
+    const profile = await this.customerRepository.fetchCustomers();
+    return profile;
+  }
 }
