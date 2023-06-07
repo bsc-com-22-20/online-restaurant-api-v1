@@ -15,11 +15,11 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'sql9.freemysqlhosting.net',
       port: 3306,
-      username: 'root',
-      password: '',
-      database: 'Food_For_You',
+      username: 'sql9624299',
+      password: ' RXgXph31tI',
+      database: 'sql9624299',
       entities: [Menus, Orders, Customers],
       synchronize: false,
     }),

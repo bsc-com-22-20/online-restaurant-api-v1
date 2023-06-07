@@ -10,7 +10,7 @@ export class Orders {
   @Column()
   quantity: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp' })
   date: Date;
 
   @Column()
