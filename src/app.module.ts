@@ -18,7 +18,7 @@ import { AuthModule } from './auth/auth.module';
       host: 'sql9.freemysqlhosting.net',
       port: 3306,
       username: 'sql9624299',
-      password: ' RXgXph31tI',
+      password: 'RXgXph31tI',
       database: 'sql9624299',
       entities: [Menus, Orders, Customers],
       synchronize: false,
