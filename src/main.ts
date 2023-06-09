@@ -9,8 +9,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // const app = await NestFactory.create(AppModule);
   // app.useGlobalPipes(new ValidationPipe());
-  app.enableCors();
-  app.use(helmet());
+  // app.enableCors();
+  // app.use(helmet());
 
   const config = new DocumentBuilder()
     .setTitle('Online Restaurant')
