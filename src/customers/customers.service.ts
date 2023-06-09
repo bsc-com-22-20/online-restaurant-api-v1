@@ -20,6 +20,7 @@ export class CustomersService {
   }
 
   createCustomers(customer: CreateCustomerDto) {
+    this.logger.log(customer);
     const newCustomer = this.customersRepository.create({ ...customer });
     return this.customersRepository.save(newCustomer);
   }

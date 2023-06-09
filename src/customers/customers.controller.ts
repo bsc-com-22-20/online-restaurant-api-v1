@@ -33,14 +33,14 @@ export class CustomersController {
   // getOneCustomer(@Param('id') id: number) {
   //   return this.customersService.fetchCustomers(id);
   //  }
-  @UseInterceptors(ClassSerializerInterceptor)
+  // @UseInterceptors(ClassSerializerInterceptor)
   @Get('customer_name')
   async findOneBy(@Param('customer_name') customer_name: string) {
     return this.customersService.findCustomerbyCustomer_name(customer_name);
   }
 
   @Post()
-  @UsePipes(ValidationPipe)
+  //@UsePipes(ValidationPipe)
   // localhost:3000/menus
   addCustomerItem(@Body() CreateCustomerDto: CreateCustomerDto) {
     return this.customersService.createCustomers(CreateCustomerDto);
