@@ -31,13 +31,13 @@ import { CustomersController } from './customers/customers.controller';
     CustomersModule,
     AuthModule,
   ],
-  controllers: [
-    AppController,
-    AuthController,
-    MenusController,
-    OrdersController,
-    CustomersController,
-  ],
-  providers: [AppService],
+  // controllers: [
+  //   AppController,
+  //   AuthController,
+  //   MenusController,
+  //   OrdersController,
+  //   CustomersController,
+  // ],
+  // providers: [AppService],
 })
 export class AppModule {}
