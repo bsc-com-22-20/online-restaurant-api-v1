@@ -11,13 +11,20 @@ import {
 } from '@nestjs/common';
 import { MenusService } from './menus.service';
 import { EditMenuDto } from './dtos';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MenusGuard } from './menus.guard';
 
 @ApiTags('Menus')
 @Controller('menus')
 export class MenusController {
   constructor(private menusService: MenusService) {}
+
+  @ApiOperation({
+    summary: 'getting a product',
+    description:
+      'This router displays all the lists of the menus available in the database. you can only get products if you have added them in the database ',
+    operationId: '',
+  })
   @Get()
   // localhost:3000/menus
   getMenus() {
