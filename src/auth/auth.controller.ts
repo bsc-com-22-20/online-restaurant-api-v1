@@ -10,13 +10,19 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @ApiOperation({
+    summary: 'getting a access token',
+    description:
+      'with this route a customer can enter their password and username and then a token will be returned to be used for access ',
+    operationId: '',
+  })
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(@Body() signInDto: Record<string, any>) {

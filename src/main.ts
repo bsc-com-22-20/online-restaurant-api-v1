@@ -6,14 +6,14 @@ import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
   app.use(helmet());
-  app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
     .setTitle('Online Restaurant')
     .setDescription(
-      'API where you can order and buy your food from without physically visiting a restuarant',
+      'API where you can order and buy your food from without physically visiting a restuarant and it would be delivered to you',
     )
     .setVersion('1.0')
     .addTag('Orders')

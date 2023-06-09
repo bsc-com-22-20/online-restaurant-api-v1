@@ -10,7 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { MenusService } from './menus.service';
-import { EditMenuDto } from './dtos';
+import { CreateMenuDto, EditMenuDto } from './dtos';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MenusGuard } from './menus.guard';
 
@@ -20,9 +20,9 @@ export class MenusController {
   constructor(private menusService: MenusService) {}
 
   @ApiOperation({
-    summary: 'getting a product',
+    summary: 'getting a menu',
     description:
-      'This router displays all the lists of the menus available in the database. you can only get products if you have added them in the database ',
+      'This route displays all the lists of the menus available in the database. you can only get menus if you have added them in the database ',
     operationId: '',
   })
   @Get()
@@ -31,13 +31,25 @@ export class MenusController {
     return this.menusService.fetchMenus();
   }
 
+  @ApiOperation({
+    summary: 'adding a menu',
+    description:
+      'This route will create a new menu to all lists of the menus available in the database. you can only create a menu using the syntax e.g {"food_name": "Rice, chicken and vegetables ","price": 20000, "isAvailable": "true"} ',
+    operationId: '',
+  })
   @Post()
   @UseGuards(MenusGuard)
   // localhost:3000/menus
-  addMenuItem(@Body() menu) {
+  addMenuItem(@Body() menu: CreateMenuDto) {
     return this.menusService.createMenu(menu);
   }
 
+  @ApiOperation({
+    summary: ' delete a menu',
+    description:
+      'This route will delete a  menu that we created and is  available in the database. a menu  can only be deleted by the owner of the API  by specifying the id of that menu in the database ',
+    operationId: '',
+  })
   @Delete(':id')
   @UseGuards(MenusGuard)
   // localhost:3000/menus
@@ -47,6 +59,13 @@ export class MenusController {
   ) {
     return await this.menusService.deleteMenu(id);
   }
+
+  @ApiOperation({
+    summary: ' update a menu',
+    description:
+      'This route will update a  menu that we created and is available in the database. a menu can only be updated by the owner of the API by specifying the id of that menu in the database ',
+    operationId: '',
+  })
   @Patch(':id')
   @UseGuards(MenusGuard)
   async update(
