@@ -12,7 +12,7 @@ import {
 import { MenusService } from './menus.service';
 import { CreateMenuDto, EditMenuDto } from './dtos';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { MenusGuard } from './menus.guard';
+// import { MenusGuard } from './menus.guard';
 
 @ApiTags('Menus')
 @Controller('menus')
@@ -38,7 +38,7 @@ export class MenusController {
     operationId: '',
   })
   @Post()
-  @UseGuards(MenusGuard)
+  // @UseGuards(MenusGuard)
   // localhost:3000/menus
   addMenuItem(@Body() menu: CreateMenuDto) {
     return this.menusService.createMenu(menu);
@@ -51,7 +51,7 @@ export class MenusController {
     operationId: '',
   })
   @Delete(':id')
-  @UseGuards(MenusGuard)
+  // @UseGuards(MenusGuard)
   // localhost:3000/menus
   async deleteMenu(
     @Param('id', ParseIntPipe) id: number,
@@ -67,7 +67,7 @@ export class MenusController {
     operationId: '',
   })
   @Patch(':id')
-  @UseGuards(MenusGuard)
+  // @UseGuards(MenusGuard)
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateMenuDto: EditMenuDto,

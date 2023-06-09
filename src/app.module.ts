@@ -10,6 +10,9 @@ import { CustomersModule } from './customers/customers.module';
 import { Customers } from './customers/models/customers.entity';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
+import { MenusController } from './menus/menus.controller';
+import { OrdersController } from './orders/orders.controller';
+import { CustomersController } from './customers/customers.controller';
 
 @Module({
   imports: [
@@ -28,7 +31,13 @@ import { AuthModule } from './auth/auth.module';
     CustomersModule,
     AuthModule,
   ],
-  controllers: [AppController, AuthController],
-  providers: [AppService],
+  // controllers: [
+  //   AppController,
+  //   AuthController,
+  //   MenusController,
+  //   OrdersController,
+  //   CustomersController,
+  // ],
+  // providers: [AppService],
 })
 export class AppModule {}
