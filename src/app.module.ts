@@ -20,7 +20,7 @@ import { CustomersController } from './customers/customers.controller';
       type: 'mysql',
       host: 'sql9.freemysqlhosting.net',
       port: 3306,
-      username: ' sql9626146',
+      username: 'sql9626146',
       password: 'ZlUJlMfMRQ',
       database: 'sql9626146',
       entities: [Menus, Orders, Customers],
